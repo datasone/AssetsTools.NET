@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AssetsTools.NET
 {
-    public class AssetTypeValue
+    public class AssetTypeValue: ICloneable
     {
         public EnumValueTypes type;
 
@@ -414,6 +414,14 @@ namespace AssetsTools.NET
                 default:
                     return (double)value.asUInt64;
             }
+        }
+
+        public object Clone()
+        {
+            return new AssetTypeValue(type, null)
+            {
+                value = value
+            };
         }
     }
 }

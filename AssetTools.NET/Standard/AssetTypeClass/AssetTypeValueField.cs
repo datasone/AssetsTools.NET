@@ -1,6 +1,9 @@
-﻿namespace AssetsTools.NET
+﻿using System;
+using System.Linq;
+
+namespace AssetsTools.NET
 {
-    public class AssetTypeValueField
+    public class AssetTypeValueField : ICloneable
     {
         public AssetTypeTemplateField templateField;
 
@@ -27,6 +30,7 @@
                         return atvf;
                     }
                 }
+
                 return AssetTypeInstance.GetDummyAssetTypeField();
             }
             set { }
@@ -105,6 +109,17 @@
                 default:
                     return EnumValueTypes.None;
             }
+        }
+
+        public object Clone()
+        {
+            return new AssetTypeValueField
+            {
+                templateField = (AssetTypeTemplateField) templateField?.Clone(),
+                childrenCount = childrenCount,
+                children = children?.Select(x => (AssetTypeValueField) x.Clone()).ToArray(),
+                value = (AssetTypeValue) value?.Clone()
+            };
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace AssetsTools.NET
 {
-    public class AssetTypeTemplateField
+    public class AssetTypeTemplateField: ICloneable
     {
         public string name;
         public string type;
@@ -210,6 +211,21 @@ namespace AssetsTools.NET
                 }
             }
             return valueField;
+        }
+
+        public object Clone()
+        {
+            return new AssetTypeTemplateField
+            {
+                name = (string) name?.Clone(),
+                type = (string) type?.Clone(),
+                valueType = valueType,
+                isArray = isArray,
+                align = align,
+                hasValue = hasValue,
+                childrenCount = childrenCount,
+                children = children?.Select(x => (AssetTypeTemplateField) x.Clone()).ToArray()
+            };
         }
     }
 }

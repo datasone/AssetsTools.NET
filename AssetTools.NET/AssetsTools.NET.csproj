@@ -4,7 +4,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Platforms>AnyCPU</Platforms>
     <LangVersion>8</LangVersion>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>bin\x64\Debug\</OutputPath>
@@ -28,6 +28,9 @@
     <PackageReference Include="Mono.Cecil" Version="0.11.3" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PackageReference Include="Mono.Cecil" Version="0.11.5" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <PackageReference Include="Mono.Cecil" Version="0.11.5" />
   </ItemGroup>
 </Project>
